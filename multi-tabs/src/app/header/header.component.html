@@ -1,0 +1,4 @@
+<p>header works!</p>
+<div *ngFor="let tab of tabs">
+    <a routerLinkActive="active-link" (click)="goToItems(tab)">{{tab.tabName}}</a>
+</div>
