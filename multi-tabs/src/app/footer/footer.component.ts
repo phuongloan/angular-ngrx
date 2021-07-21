@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-// import { TabsService } from '../tabs.service';
-//import { getItems } from '../store/tabs/tabs.actions';
-import { getTabs } from '../store/tabs/tabs.selector';
 import { Tab } from '../tabs';
 import { Observable } from 'rxjs';
+import * as fromRoot from '../store/tabs/tabs.selector';
 
 @Component({
   selector: 'app-footer',
@@ -12,18 +10,12 @@ import { Observable } from 'rxjs';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-  //tabs$: Observable<Tab[]>;
-  //tabs: Tab[] = [];
-  // ts$ = this.store.pipe(select(selectBooks));
+  tabs!: Observable<Tab[]>;
 
-  constructor(private store: Store) {
-    //this.tabs$ = store.select('tabs');
-    console.log('contructor', store.select(state => state))
+  constructor(private store: Store<{ tabs: Tab[] }>) {
   }
-  tabs = this.store.pipe(select(getTabs));
-
   ngOnInit(): void {
-    //console.log(this.store.select(getTabs()))
+    this.tabs = this.store.pipe(select(fromRoot.getTabstate));
   }
 
 }

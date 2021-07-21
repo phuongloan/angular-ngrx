@@ -4,10 +4,10 @@ import { RouterModule } from '@angular/router';
 
 import { tabsReducer } from './store/tabs/tabs.reducer';
 import { counterReducer } from './store/counter/counter.reducer';
-import { appReducer } from './store';
+import { reducers } from './store/reducer';
 // import { EffectsModule } from '@ngrx/effects';
 // import { AppEffects } from './effects';
-import { StoreModule } from '@ngrx/store';
+import { StoreFeatureModule, StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { Tab1Component } from './pages/tab1/tab1.component';
@@ -56,7 +56,8 @@ import { MyCounterComponent } from './components/my-counter/my-counter.component
       { path: '', redirectTo: '/tab-1', pathMatch: 'full' },
 
     ]),
-    StoreModule.forRoot({ count: counterReducer, tabs: tabsReducer })
+    StoreModule.forRoot({ count: counterReducer, tabs: tabsReducer }),
+    StoreModule.forFeature('appState', reducers)
   ],
   providers: [],
   bootstrap: [AppComponent]
