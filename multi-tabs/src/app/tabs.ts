@@ -7,33 +7,28 @@ export interface Tab {
 
 export const Tabs = [
     {
-        tabName: 'Tab 1',
-        routName: '/tab-1',
-        routerLink: '/tab-1'
+        tabName: 'Supplier',
+        routName: '/supplier/index',
+        routerLink: '/supplier/index'
     },
     {
-        tabName: 'Tab 2',
-        routName: '/tab-2',
-        routerLink: '/tab-2'
+        tabName: 'Hotel',
+        routName: '/hotel/index',
+        routerLink: '/hotel/index'
     },
     {
-        tabName: 'Tab 3',
-        routName: '/tab-3',
-        routerLink: '/tab-3'
+        tabName: 'Mapping',
+        routName: '/mapping/index',
+        routerLink: '/mapping/index'
     },
     {
-        tabName: 'Tab 4',
-        routName: '/tab-4',
-        routerLink: '/tab-4'
+        tabName: 'Reservation',
+        routName: '/reservation/index',
+        routerLink: '/reservation/index'
     },
     {
-        tabName: 'Tab 5',
-        routName: '/tab-5',
-        routerLink: '/tab-5'
-    },
-    {
-        tabName: 'Tab 6',
-        routName: '/tab-6',
-        routerLink: '/tab-6'
+        tabName: 'Notice',
+        routName: '/notice/index',
+        routerLink: '/notice/index'
     }
 ];

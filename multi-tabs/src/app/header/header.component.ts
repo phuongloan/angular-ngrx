@@ -35,14 +35,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onLocationChange() {
-  }
-  goToItems(item: Tab) {
-    this.router.navigate([item.routerLink], { relativeTo: this.route });
-  }
-
   addItemToTabs(item: Tab) {
     this.store.dispatch(addItem({ item }))
-    //this.tabService.addItem(item)
   }
 }

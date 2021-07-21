@@ -1,4 +1,8 @@
-<p>footer works!</p>
-<div *ngFor="let tab of tabs | async">
-    <a [routerLink]="tab.routerLink" [queryParams]="tab.routerParams">{{tab.tabName}}</a>
-</div>
+<mat-toolbar color="accent" class="footer">
+    <mat-toolbar-row>
+        <div *ngFor="let tab of tabs | async">
+            <a mat-button routerLinkActive="is-active" [routerLink]="tab.routerLink"
+                [queryParams]="tab.routerParams">{{tab.tabName}}</a>
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>

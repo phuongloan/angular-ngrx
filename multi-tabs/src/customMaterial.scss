@@ -1,0 +1,67 @@
+@use '~@angular/material' as mat;
+@include mat.core();
+
+$gray-palette: (
+ 50: #fff,
+ 100: #fafafa,
+ 200: #F5F5F5,
+ 300: #F0F0F0,
+ 400: #DEDEDE,
+ 500: #C2C2C2,
+ 600: #979797,
+ 700: #818181,
+ 800: #606060,
+ 900: #3C3C3C,
+ 
+ contrast: (
+   50: rgba(black, 0.87),
+   100: rgba(black, 0.87),
+   200: rgba(black, 0.87),
+   300: rgba(black, 0.87),
+   400: rgba(black, 0.87),
+ 500: rgba(black, 0.87),
+ 600: rgba(black, 0.87),
+ 700: rgba(black, 0.87),
+ 800: white,
+ 900: white,
+ )
+);
+$green-palette: (
+ 50: #DDECE4,
+ 100: #aed1bb,
+ 200: #7db390,
+ 300: #509669,
+ 400: #33824f,
+ 500: #1d6e39,
+ 600: #186330,
+ 700: #125525,
+ 800: #07461A,
+ 900: #002C00,
+ 
+ contrast: (
+   50: rgba(black, 0.87),
+   100: rgba(black, 0.87),
+   200: rgba(black, 0.87),
+   300: rgba(black, 0.87),
+   400: rgba(black, 0.87),
+ 500: rgba(black, 0.87),
+ 600: rgba(black, 0.87),
+ 700: rgba(black, 0.87),
+ 800: white,
+ 900: white,
+ )
+);
+$my-primary: mat.define-palette($green-palette, 900);
+$my-accent: mat.define-palette($gray-palette, 100);
+
+// The "warn" palette is optional and defaults to red if not specified.
+$my-warn: mat.define-palette(mat.$red-palette);
+$my-theme: mat.define-light-theme((
+ color: (
+   primary: $my-primary,
+   accent: $my-accent,
+   warn: $my-warn,
+ )
+));
+
+@include mat.all-component-themes($my-theme);

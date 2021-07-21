@@ -1,0 +1,5 @@
+<h1>tab1 works!</h1>
+<app-my-counter></app-my-counter>
+<a [routerLink]="['/supplier/detail', 1]" [queryParams]="{debug: true, istrue: false}">Tab 1 detail param</a>
+<a [routerLink]="['/supplier/detail', 1]">Tab 1 detail</a>
+<router-outlet></router-outlet>

@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-tab6',
-  templateUrl: './tab6.component.html',
-  styleUrls: ['./tab6.component.css']
+  selector: 'app-notice',
+  templateUrl: './notice.component.html',
+  styleUrls: ['./notice.component.css']
 })
-export class Tab6Component implements OnInit {
+export class NoticeComponent implements OnInit {
 
   constructor(private titleService: Title) {
-    titleService.setTitle('Tab 6')
+    titleService.setTitle('Notice')
   }
   ngOnInit(): void {
   }
