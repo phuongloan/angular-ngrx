@@ -14,7 +14,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 })
 export class FooterComponent implements OnInit {
   tabs!: Tab[];
-
+  isFitInkBarToContent: boolean = true;
   constructor(private store: Store<{ tabs: Tab[] }>, private router: Router) {
   }
   ngOnInit(): void {
@@ -22,10 +22,10 @@ export class FooterComponent implements OnInit {
       this.tabs = [...tabs];
     });
   }
-  remove(item: Tab, index: number) {
-    if (index === this.tabs.length - 1) {
-      if (index === 0) return;
-      this.router.navigate([this.tabs[this.tabs.length - 2].routerLink]);
+  remove(item: Tab, index: number, isActive: boolean) {
+    if (isActive) {
+      if (this.tabs.length === 1) return;
+      this.router.navigate([this.tabs[(index) > 0 ? index - 1 : index + 1].routerLink]);
     }
     this.store.dispatch(removeItem({ item }))
   }

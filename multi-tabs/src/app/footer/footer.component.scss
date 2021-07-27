@@ -1,11 +1,43 @@
 .footer{
-    position: fixed;
+    position: absolute;
     bottom: 0;
-}
-.example-custom-placeholder {
-  background: #ccc;
-  border: dotted 3px #999;
-  min-width: 60px;
-  min-height: 30px;
-  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+    left: 0;
+    right: 0;
+    .mat-tab-nav-bar{
+        border-top: 1px solid rgba(0, 0, 0, 0.12);
+        border-bottom: 0;
+        ::ng-deep{
+            .mat-tab-list{
+                .mat-tab-links{
+                    .mat-tab-link{
+                        min-width: 100px !important;
+                        position: relative;
+                        justify-content: flex-start;
+                        .icon-remove{
+                            position: absolute;
+                            right: 0;
+                            top: 0;
+                            opacity: 0.1;
+                            cursor: pointer;
+                            transition: opacity 0.2s ease;
+                            font-size: 18px;
+                            height: 18px;
+                            width: 18px;
+                            padding: 3px;
+                        }
+                        &:hover{
+                            .icon-remove{
+                                opacity: 1;
+                            }
+                        }
+                    }
+                }
+                .mat-ink-bar{
+                    top: 0;
+                    bottom: auto;
+                }
+            }
+        }
+        
+    }
 }

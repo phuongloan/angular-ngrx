@@ -10,12 +10,9 @@ const _tabsReducer = createReducer(
         let tabs: Tab[] = [...state];
         const index: number = tabs.findIndex(i => i.routName === item.routName);
         let tab: Tab;
-        if (index > -1) {
-            tab = tabs[index];
-            tabs.splice(index, 1);
-            tabs.push(tab);
-        } else
+        if (index < 0) {
             tabs.push(item);
+        }
         return tabs;
     }),
     on(removeItem, (state, { item }) => {
