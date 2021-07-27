@@ -28,7 +28,7 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/customMaterial.scss"
+              "src/assets/styles/customMaterial.scss"
             ],
             "scripts": []
           },

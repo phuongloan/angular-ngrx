@@ -6,7 +6,12 @@ export const getAppState = createFeatureSelector<AppState>('appState');
 export const getTabstate = createSelector(
     getAppState,
     (state: AppState) => {
-        state.tabs
         return state.tabs
     }
 );
+export const getCurrentTab = createSelector(
+    getAppState,
+    (state: AppState) => {
+        return state.tabs[state.tabs.length - 1]
+    }
+)

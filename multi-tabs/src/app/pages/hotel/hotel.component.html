@@ -1,4 +1,6 @@
-<h2>tab2 works!</h2>
-<a routerLink="/hotel/detail">Tab 2 detail</a>
+<h2>Hotel works!</h2>
+<a routerLink="/hotel/detail">Hotel detail</a>
 <app-my-counter></app-my-counter>
-<router-outlet></router-outlet>
+<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
+    <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie}}</div>
+</div>

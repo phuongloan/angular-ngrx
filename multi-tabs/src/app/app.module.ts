@@ -7,8 +7,8 @@ import { counterReducer } from './store/counter/counter.reducer';
 import { reducers } from './store/reducer';
 // import { EffectsModule } from '@ngrx/effects';
 // import { AppEffects } from './effects';
-import { StoreModule } from '@ngrx/store';
-
+import { reduceState, StoreModule } from '@ngrx/store';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { SuppllierComponent } from './pages/suppllier/suppllier.component';
 import { HotelComponent } from './pages/hotel/hotel.component';
@@ -23,6 +23,7 @@ import { MyCounterComponent } from './components/my-counter/my-counter.component
 
 import { MaterialModule } from './material-module';
 import { LayoutModule } from '@angular/cdk/layout';
+import { SideNavComponent } from './side-nav/side-nav.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,10 +37,12 @@ import { LayoutModule } from '@angular/cdk/layout';
     SupplierDetailComponent,
     HotelDetailComponent,
     MyCounterComponent,
+    SideNavComponent,
   ],
   imports: [
     BrowserModule,
     MaterialModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot([
       {
         path: 'supplier', children: [
@@ -76,7 +79,7 @@ import { LayoutModule } from '@angular/cdk/layout';
       { path: '', redirectTo: '/supplier/index', pathMatch: 'full' },
 
     ]),
-    StoreModule.forRoot({ count: counterReducer, tabs: tabsReducer }),
+    StoreModule.forRoot({ count: counterReducer }),
     StoreModule.forFeature('appState', reducers),
     LayoutModule
   ],

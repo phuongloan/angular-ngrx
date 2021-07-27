@@ -1,0 +1,27 @@
+.example-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.example-events {
+  width: 300px;
+  height: 200px;
+  overflow: auto;
+  border: 1px solid #555;
+}
+mat-sidenav[style] {
+  visibility: visible !important;
+  overflow: visible;
+  &::ng-deep .mat-drawer-inner-container{
+    overflow: visible !important;
+  }
+}
+.mat-drawer {
+  transform: none !important;
+}
+mat-sidenav.mat-drawer-opened {
+  width: 220px;
+}

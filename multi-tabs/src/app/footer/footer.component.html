@@ -1,8 +1,14 @@
 <mat-toolbar color="accent" class="footer">
-    <mat-toolbar-row>
-        <div *ngFor="let tab of tabs | async">
-            <a mat-button routerLinkActive="is-active" [routerLink]="tab.routerLink"
-                [queryParams]="tab.routerParams">{{tab.tabName}}</a>
+    <mat-toolbar-row cdkDropListOrientation="horizontal" cdkDropList class="example-list"
+        (cdkDropListDropped)="drop($event)">
+        <!-- <div class="example-box" *ngFor="let movie of movies" cdkDrag>{{movie}}</div> -->
+        <div *ngFor="let tab of tabs; let i = index;" cdkDrag>
+            <div class="example-custom-placeholder" *cdkDragPlaceholder></div>
+            <div>
+                <a mat-button routerLinkActive="is-active" [routerLink]="tab.routerLink"
+                    [queryParams]="tab.routerParams">{{tab.tabName}}</a>
+                <button (click)="remove(tab, i)">X</button>
+            </div>
         </div>
     </mat-toolbar-row>
 </mat-toolbar>

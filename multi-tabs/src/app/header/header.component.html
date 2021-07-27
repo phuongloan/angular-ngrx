@@ -2,8 +2,8 @@
     <mat-toolbar-row>
         <h1>OMC Admin</h1>
         <span class="menu-spacer"></span>
-        <div *ngFor="let tab of tabs">
-            <a mat-button [routerLink]="tab.routerLink" routerLinkActive="is-active">{{tab.tabName}}</a>
+        <div *ngFor="let item of menu">
+            <a mat-button [routerLink]="item.routerLink" routerLinkActive="is-active">{{item.tabName}}</a>
         </div>
     </mat-toolbar-row>
 </mat-toolbar>

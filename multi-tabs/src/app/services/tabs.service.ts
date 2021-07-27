@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Tab } from './tabs';
+import { Tab } from '../tabs';
 
 @Injectable({
     providedIn: 'root'

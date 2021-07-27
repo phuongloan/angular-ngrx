@@ -1,5 +1,9 @@
-<div>
-  <app-header></app-header>
-  <router-outlet></router-outlet>
-  <app-footer></app-footer>
-</div>
+<mat-sidenav-container class="example-container" autosize>
+  <mat-sidenav [attr.color]="'primary'" #sidenav fixedInViewport="true" mode="side" [(opened)]="opened">
+    <app-side-nav (toggleMenu)="toggleMenu()" [isExpanded]="opened"></app-side-nav>
+  </mat-sidenav>
+  <mat-sidenav-content [style.margin-left.px]="!opened ? 56 : 220">
+    <router-outlet></router-outlet>
+    <app-footer></app-footer>
+  </mat-sidenav-content>
+</mat-sidenav-container>

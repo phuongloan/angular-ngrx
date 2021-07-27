@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import { addItem, removeItem, getItems, clearItems } from "./tabs.actions";
+import { addItem, removeItem, clearItems, updateDataItem } from "./tabs.actions";
 import { Tab } from "src/app/tabs";
 
 var initalTabs: Tab[] = [];
@@ -9,10 +9,13 @@ const _tabsReducer = createReducer(
     on(addItem, (state, { item }) => {
         let tabs: Tab[] = [...state];
         const index: number = tabs.findIndex(i => i.routName === item.routName);
+        let tab: Tab;
         if (index > -1) {
+            tab = tabs[index];
             tabs.splice(index, 1);
-        }
-        tabs.push(item)
+            tabs.push(tab);
+        } else
+            tabs.push(item);
         return tabs;
     }),
     on(removeItem, (state, { item }) => {
@@ -23,7 +26,15 @@ const _tabsReducer = createReducer(
         }
         return tabs;
     }),
-    on(clearItems, (state) => [])
+    on(clearItems, (state) => {
+        return [];
+    }),
+    on(updateDataItem, (state, { item, data }) => {
+        let tabs: Tab[] = [...state];
+        const index: number = tabs.findIndex(i => i.routName === item.routName);
+        tabs[index] = { ...tabs[index], tabData: data };
+        return tabs;
+    })
 );
 
 
