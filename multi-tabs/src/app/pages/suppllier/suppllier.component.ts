@@ -1,5 +1,4 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { Store, select } from '@ngrx/store';
 import { Tab } from "../../tabs";
 import { Observable } from 'rxjs';
@@ -21,28 +20,23 @@ export class SuppllierComponent implements OnInit, OnDestroy {
   componentDestroyed$: Subject<boolean> = new Subject();
   displayedColumns: string[] = ['code', 'name', 'type', 'country'];
   dataSource = this.supplierService.getItems();
-  constructor(private titleService: Title, private store: Store<{ tabs: Tab[] }>, private supplierService: SupplierService) {
-    titleService.setTitle('Suppllier');
+  constructor(private store: Store<{ tabs: Tab[] }>, private supplierService: SupplierService) {
 
   }
 
   ngOnInit(): void {
-    console.log('init of supplier')
     this.store.select(fromRoot.getCurrentTab).pipe(takeUntil(this.componentDestroyed$)).subscribe((item: Tab) => {
       this.tab = item;
-      console.log('get supplier', this.tab);
 
       if (this.tab != undefined) {
         if (this.tab.tabData == null) {
           this.data = this.supplierService.getItems();
           let data = this.data;
           this.store.dispatch(updateDataItem({ item, data }));
-          console.log('get supplier data from service');
 
         }
         else {
           this.data = this.tab.tabData;
-          console.log('get supplier data from store');
 
         }
       }

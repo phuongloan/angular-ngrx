@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-supplier-detail',
@@ -8,8 +7,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class SupplierDetailComponent implements OnInit {
 
-  constructor(private titleService: Title) {
-    titleService.setTitle('Supplier Detail')
+  constructor() {
   }
   ngOnInit(): void {
   }

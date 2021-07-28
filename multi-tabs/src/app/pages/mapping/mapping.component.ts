@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-mapping',
@@ -8,8 +7,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class MappingComponent implements OnInit {
 
-  constructor(private titleService: Title) {
-    titleService.setTitle('Mapping')
+  constructor() {
   }
 
   ngOnInit(): void {

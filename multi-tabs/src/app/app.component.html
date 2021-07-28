@@ -3,6 +3,7 @@
     <app-side-nav (toggleMenu)="toggleMenu()" [isExpanded]="opened"></app-side-nav>
   </mat-sidenav>
   <mat-sidenav-content [style.margin-left.px]="!opened ? 56 : 220">
+    <app-breadcrumb></app-breadcrumb>
     <router-outlet></router-outlet>
     <app-footer></app-footer>
   </mat-sidenav-content>

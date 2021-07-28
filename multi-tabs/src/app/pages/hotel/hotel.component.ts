@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -9,8 +8,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 })
 export class HotelComponent implements OnInit {
 
-  constructor(private titleService: Title) {
-    titleService.setTitle('Hotel')
+  constructor() {
   }
 
   ngOnInit(): void {

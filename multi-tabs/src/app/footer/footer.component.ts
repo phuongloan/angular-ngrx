@@ -25,7 +25,7 @@ export class FooterComponent implements OnInit {
   remove(item: Tab, index: number, isActive: boolean) {
     if (isActive) {
       if (this.tabs.length === 1) return;
-      this.router.navigate([this.tabs[(index) > 0 ? index - 1 : index + 1].routerLink]);
+      this.router.navigate([this.tabs[(index < this.tabs.length - 1) ? index + 1 : index - 1].routerLink]);
     }
     this.store.dispatch(removeItem({ item }))
   }

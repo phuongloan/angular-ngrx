@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 // import { TabsService } from '../tabs.service';
 import { addItem } from '../store/tabs/tabs.actions';
 import { Tab, Menu } from '../tabs';
+import { filter, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-header',
@@ -23,15 +24,37 @@ export class HeaderComponent implements OnInit {
         let routerParams = null;
         let routerLink: string = val.url.split('?')[0];
         route.queryParams.subscribe(params => {
-          routerParams = params
+          routerParams = params;
+          console.log('params', params)
         }
         );
-        this.addItemToTabs({ tabName: titleService.getTitle(), routName: val.url, routerParams, routerLink, tabData: null });
+        this.addItemToTabs({ tabName: titleService.getTitle(), url: val.url, routerParams, routerLink, tabData: null });
       }
     });
+
   }
 
   ngOnInit(): void {
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd),
+      map(() => {
+        let child = this.route.firstChild;
+        while (child) {
+          if (child.firstChild) {
+            child = child.firstChild;
+          } else if (child.snapshot.data && child.snapshot.data['title']) {
+            return child.snapshot.data['title'];
+          } else {
+            return null;
+          }
+        }
+        return null;
+      })
+    ).subscribe((data: any) => {
+      if (data) {
+        this.titleService.setTitle(data + ' - Website Name');
+      }
+    });
   }
 
   addItemToTabs(item: Tab) {

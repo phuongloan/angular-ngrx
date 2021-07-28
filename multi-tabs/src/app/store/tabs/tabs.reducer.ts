@@ -8,7 +8,7 @@ const _tabsReducer = createReducer(
     initalTabs,
     on(addItem, (state, { item }) => {
         let tabs: Tab[] = [...state];
-        const index: number = tabs.findIndex(i => i.routName === item.routName);
+        const index: number = tabs.findIndex(i => i.url === item.url);
         let tab: Tab;
         if (index < 0) {
             tabs.push(item);
@@ -17,7 +17,7 @@ const _tabsReducer = createReducer(
     }),
     on(removeItem, (state, { item }) => {
         let tabs: Tab[] = [...state];
-        const index: number = tabs.findIndex(i => i.routName === item.routName);
+        const index: number = tabs.findIndex(i => i.url === item.url);
         if (index > -1) {
             tabs.splice(index, 1);
         }
@@ -28,7 +28,7 @@ const _tabsReducer = createReducer(
     }),
     on(updateDataItem, (state, { item, data }) => {
         let tabs: Tab[] = [...state];
-        const index: number = tabs.findIndex(i => i.routName === item.routName);
+        const index: number = tabs.findIndex(i => i.url === item.url);
         tabs[index] = { ...tabs[index], tabData: data };
         return tabs;
     })
