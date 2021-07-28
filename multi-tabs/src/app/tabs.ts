@@ -3,7 +3,6 @@ export interface Tab {
     url: string;
     routerLink: string;
     routerParams?: any;
-    tabData?: any;
 }
 
 export const Menu = [

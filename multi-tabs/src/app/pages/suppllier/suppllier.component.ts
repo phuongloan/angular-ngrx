@@ -1,10 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Tab } from "../../tabs";
-import { Observable } from 'rxjs';
 import * as fromRoot from '../../store/tabs/tabs.selector';
 import { SupplierService } from 'src/app/services/supplier.service';
-import { updateDataItem } from '../../store/tabs/tabs.actions';
 import { Subject } from "rxjs"
 import { takeUntil } from "rxjs/operators"
 
@@ -14,8 +12,6 @@ import { takeUntil } from "rxjs/operators"
   styleUrls: ['./suppllier.component.css']
 })
 export class SuppllierComponent implements OnInit, OnDestroy {
-  //tab!: Observable<Tab>;
-  tab!: Tab;
   data: any = null;
   componentDestroyed$: Subject<boolean> = new Subject();
   displayedColumns: string[] = ['code', 'name', 'type', 'country'];
@@ -26,20 +22,20 @@ export class SuppllierComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.store.select(fromRoot.getCurrentTab).pipe(takeUntil(this.componentDestroyed$)).subscribe((item: Tab) => {
-      this.tab = item;
+      //this.tab = item;
 
-      if (this.tab != undefined) {
-        if (this.tab.tabData == null) {
-          this.data = this.supplierService.getItems();
-          let data = this.data;
-          this.store.dispatch(updateDataItem({ item, data }));
+      // if (this.tab != undefined) {
+      //   if (this.tab.tabData == null) {
+      //     this.data = this.supplierService.getItems();
+      //     let data = this.data;
+      //     this.store.dispatch(updateDataItem({ item, data }));
 
-        }
-        else {
-          this.data = this.tab.tabData;
+      //   }
+      //   else {
+      //     this.data = this.tab.tabData;
 
-        }
-      }
+      //   }
+      // }
 
     });
   }

@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import { addItem, removeItem, clearItems, updateDataItem } from "./tabs.actions";
+import { addItem, removeItem, clearItems } from "./tabs.actions";
 import { Tab } from "src/app/tabs";
 
 var initalTabs: Tab[] = [];
@@ -25,12 +25,6 @@ const _tabsReducer = createReducer(
     }),
     on(clearItems, (state) => {
         return [];
-    }),
-    on(updateDataItem, (state, { item, data }) => {
-        let tabs: Tab[] = [...state];
-        const index: number = tabs.findIndex(i => i.url === item.url);
-        tabs[index] = { ...tabs[index], tabData: data };
-        return tabs;
     })
 );
 
