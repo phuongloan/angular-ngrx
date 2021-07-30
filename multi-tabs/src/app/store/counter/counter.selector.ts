@@ -3,9 +3,9 @@ import { AppState } from "..";
 
 export const getAppState = createFeatureSelector<AppState>('appState');
 
-export const getTabstate = createSelector(
+export const getCount = createSelector(
     getAppState,
     (state: AppState) => {
-        return state.tabs
+        return state.count
     }
 );

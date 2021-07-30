@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import { addItem, removeItem, clearItems } from "./tabs.actions";
+import { addItem, removeItem, clearItems, switchItems } from "./tabs.actions";
 import { Tab } from "src/app/tabs";
 
 var initalTabs: Tab[] = [];
@@ -25,6 +25,9 @@ const _tabsReducer = createReducer(
     }),
     on(clearItems, (state) => {
         return [];
+    }),
+    on(switchItems, (state, { items }) => {
+        return items;
     })
 );
 

@@ -21,23 +21,23 @@ export class SuppllierComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.store.select(fromRoot.getCurrentTab).pipe(takeUntil(this.componentDestroyed$)).subscribe((item: Tab) => {
-      //this.tab = item;
+    //this.store.select(fromRoot.getCurrentTab).pipe(takeUntil(this.componentDestroyed$)).subscribe((item: Tab) => {
+    //this.tab = item;
 
-      // if (this.tab != undefined) {
-      //   if (this.tab.tabData == null) {
-      //     this.data = this.supplierService.getItems();
-      //     let data = this.data;
-      //     this.store.dispatch(updateDataItem({ item, data }));
+    // if (this.tab != undefined) {
+    //   if (this.tab.tabData == null) {
+    //     this.data = this.supplierService.getItems();
+    //     let data = this.data;
+    //     this.store.dispatch(updateDataItem({ item, data }));
 
-      //   }
-      //   else {
-      //     this.data = this.tab.tabData;
+    //   }
+    //   else {
+    //     this.data = this.tab.tabData;
 
-      //   }
-      // }
+    //   }
+    // }
 
-    });
+    //});
   }
   ngOnDestroy() {
     this.componentDestroyed$.next(true)

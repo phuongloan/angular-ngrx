@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { tabsReducer } from './store/tabs/tabs.reducer';
 import { counterReducer } from './store/counter/counter.reducer';
-import { reducers } from './store/reducer';
+import { reducers, metaReducers } from './store';
 // import { EffectsModule } from '@ngrx/effects';
 // import { AppEffects } from './effects';
 import { reduceState, StoreModule } from '@ngrx/store';
@@ -83,9 +84,13 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
       { path: '', redirectTo: '/supplier/index', pathMatch: 'full' },
 
     ]),
-    StoreModule.forRoot({ count: counterReducer }),
-    StoreModule.forFeature('appState', reducers),
-    LayoutModule
+    StoreModule.forRoot({}),
+    StoreModule.forFeature('appState', reducers, { metaReducers }),
+    LayoutModule,
+    StoreDevtoolsModule.instrument({
+      maxAge: 25, // Retains last 25 states
+      autoPause: true, // Pauses recording actions and state changes when the extension window is not open
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
