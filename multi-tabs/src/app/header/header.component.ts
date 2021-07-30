@@ -28,7 +28,7 @@ export class HeaderComponent implements OnInit {
           console.log('params', params)
         }
         );
-        this.addItemToTabs({ tabName: titleService.getTitle(), url: val.url, routerParams, routerLink, tabData: null });
+        this.addItemToTabs({ tabName: titleService.getTitle(), url: val.url, routerParams, routerLink });
       }
     });
 
