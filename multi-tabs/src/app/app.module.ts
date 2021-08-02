@@ -3,8 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
-import { tabsReducer } from './store/tabs/tabs.reducer';
-import { counterReducer } from './store/counter/counter.reducer';
 import { reducers, metaReducers } from './store';
 // import { EffectsModule } from '@ngrx/effects';
 // import { AppEffects } from './effects';

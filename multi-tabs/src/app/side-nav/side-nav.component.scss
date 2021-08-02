@@ -30,8 +30,11 @@
             padding: 0;
             border-radius: 2px;
             mat-tree-node{
-              padding-left: 20px;
               min-height: 40px;
+              a{
+                padding-left: 20px;
+
+              }
             }
             .mat-button{
               padding-left: 0px;
