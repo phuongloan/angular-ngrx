@@ -84,6 +84,7 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     ]),
     StoreModule.forRoot({}),
     StoreModule.forFeature('appState', reducers, { metaReducers }),
+    //StoreModule.forFeature('appState', reducers),
     LayoutModule,
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states

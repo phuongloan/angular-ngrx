@@ -1,5 +1,6 @@
 import { ActionReducer, INIT, UPDATE } from "@ngrx/store";
 import { AppState } from "..";
+import { HostListener } from '@angular/core';
 
 export const hydrationMetaReducer = (
     reducer: ActionReducer<AppState>
@@ -7,7 +8,11 @@ export const hydrationMetaReducer = (
     return (state, action) => {
         if (action.type === INIT || action.type === UPDATE) {
             const storageValue = localStorage.getItem("state");
-            if (storageValue) {
+            let pageReloaded = window.performance
+                .getEntriesByType('navigation')
+                .map((nav) => (nav as any).type)
+                .includes('reload');
+            if (storageValue && pageReloaded) {
                 try {
                     return JSON.parse(storageValue);
                 } catch {
