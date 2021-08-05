@@ -4,7 +4,9 @@
   </mat-sidenav>
   <mat-sidenav-content [style.margin-left.px]="!opened ? 56 : 220">
     <app-breadcrumb></app-breadcrumb>
-    <router-outlet></router-outlet>
+    <div class="page-content">
+      <router-outlet></router-outlet>
+    </div>
     <app-footer></app-footer>
   </mat-sidenav-content>
 </mat-sidenav-container>

@@ -5,6 +5,7 @@ import { Tab } from '../tabs';
 import { Observable } from 'rxjs';
 import * as fromRoot from '../store/tabs/tabs.selector';
 import { removeItem, switchItems } from '../store/tabs/tabs.actions';
+import { removePageData } from '../store/pages/pages.actions';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
@@ -28,6 +29,8 @@ export class FooterComponent implements OnInit {
       this.router.navigate([this.tabs[(index < this.tabs.length - 1) ? index + 1 : index - 1].routerLink]);
     }
     this.store.dispatch(removeItem({ item }))
+    if (item.pageId)
+      this.store.dispatch(removePageData({ pageId: item.pageId }))
   }
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.tabs, event.previousIndex, event.currentIndex);

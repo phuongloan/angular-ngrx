@@ -16,7 +16,7 @@ export class TabsService {
     }
 
     removeItem(item: Tab) {
-        const index: number = this.items.findIndex(i => i.url === item.url);
+        const index: number = this.items.findIndex(i => i.pageId === item.pageId);
         if (index > -1) {
             this.items.splice(index, 1);
         }

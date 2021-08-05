@@ -1,10 +1,17 @@
 <h1>Supplier List</h1>
 <!-- <a [routerLink]="['/supplier/detail', 1]" [queryParams]="{debug: true, istrue: false}">Supplier detail param</a>
 <a [routerLink]="['/supplier/detail', 1]">Supplier detail</a> -->
-<button id="increment" (click)="increment()">Increment</button>
-<div>Current Count: {{ data.count }}</div>
-<button id="decrement" (click)="decrement()">Decrement</button>
-<button id="reset" (click)="reset()">Reset Counter</button>
+<form class="supplier-form">
+    <!-- <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Input Counter Number</mat-label>
+       
+        <input matInput [(ngModel)]="data.count">
+    </mat-form-field> -->
+    <div>{{data.count}}</div>
+    <button type="button" mat-stroked-button (click)="increment()">Increment</button>
+    <button type="button" mat-stroked-button (click)="decrement()">Decrement</button>
+    <button type="button" mat-stroked-button (click)="reset()">Reset Counter</button>
+</form>
 <table mat-table [dataSource]="data.data.supplierList" class="mat-elevation-z8" style="width: 100%;">
     <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->

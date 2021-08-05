@@ -1,5 +1,5 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import { addPage, updatePageData } from "./pages.actions";
+import { addPage, updatePageData, removePageData } from "./pages.actions";
 
 var initalPages: any[] = [];
 
@@ -17,6 +17,14 @@ const _pagesReducer = createReducer(
             pages.splice(index, 1);
         }
         pages.push(page);
+        return pages;
+    }),
+    on(removePageData, (state, { pageId }) => {
+        let pages: any[] = [...state];
+        const index: number = pages.findIndex(p => p.pageId === pageId);
+        if (index > -1) {
+            pages.splice(index, 1);
+        }
         return pages;
     })
 );

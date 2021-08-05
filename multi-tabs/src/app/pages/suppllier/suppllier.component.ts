@@ -2,9 +2,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../store/pages/pages.selector';
 import { getIsReload } from '../../store/reload/reload.selector';
-import { addPage, updatePageData } from 'src/app/store/pages/pages.actions';
+import { updatePageData } from 'src/app/store/pages/pages.actions';
 import { SupplierService } from 'src/app/services/supplier.service';
 import { Subject } from "rxjs"
+import { updatePageId } from '../../store/tabs/tabs.actions';
 
 @Component({
   selector: 'app-suppllier',
@@ -24,18 +25,7 @@ export class SuppllierComponent implements OnInit, OnDestroy {
     this.store.select(getIsReload).subscribe((isReload: boolean) => {
       isReload$ = isReload;
     });
-    if (!this.data || (Object.keys(this.data).length === 0)) {
-      let data = {
-        pageId: 'supplierList',
-        data: {
-          supplierList: this.supplierService.getItems()
-        },
-        count: 0
-      }
-      this.store.dispatch(updatePageData({ page: data }))
-
-    }
-    if (isReload$) {
+    if (!this.data || (Object.keys(this.data).length === 0) || isReload$) {
       let data = {
         pageId: 'supplierList',
         data: {
@@ -45,11 +35,21 @@ export class SuppllierComponent implements OnInit, OnDestroy {
       }
       this.store.dispatch(updatePageData({ page: data }))
     }
+    // if (isReload$) {
+    //   let data = {
+    //     pageId: 'supplierList',
+    //     data: {
+    //       supplierList: this.supplierService.getItems()
+    //     },
+    //     count: 0
+    //   }
+    //   this.store.dispatch(updatePageData({ page: data }))
+    // }
 
 
   }
   ngOnInit(): void {
-
+    this.store.dispatch(updatePageId({ tabName: 'Supplier', pageId: 'supplierList' }))
   }
 
   ngOnDestroy(): void {

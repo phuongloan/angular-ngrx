@@ -1,6 +1,7 @@
 export interface Tab {
     tabName: string;
     url: string;
+    pageId?: string;
     routerLink: string;
     routerParams?: any;
 }
