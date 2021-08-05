@@ -1,6 +1,5 @@
 import { ActionReducer, INIT, UPDATE } from "@ngrx/store";
 import { AppState } from "..";
-import { HostListener } from '@angular/core';
 
 export const hydrationMetaReducer = (
     reducer: ActionReducer<AppState>

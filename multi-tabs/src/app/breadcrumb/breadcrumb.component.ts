@@ -5,6 +5,8 @@ import { filter, map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { Tab } from '../tabs';
 import { addItem } from '../store/tabs/tabs.actions';
+import { updateReload } from '../store/reload/reload.actions';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-breadcrumb',
   templateUrl: './breadcrumb.component.html',
@@ -16,6 +18,8 @@ export class BreadcrumbComponent implements OnInit {
   url: string = '';
   routerParams: any;
   routerLink: string = '';
+  title$!: Observable<{ [key: string]: string }>
+
   constructor(private router: Router,
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
@@ -24,8 +28,8 @@ export class BreadcrumbComponent implements OnInit {
       filter(event => event instanceof NavigationEnd),
       map((event) => {
         if (event instanceof NavigationEnd) {
-          this.url = event.url;
-          this.routerLink = event.url.split('?')[0];
+          this.url = event.url == '/' ? '/supplier/index' : event.url;
+          this.routerLink = this.url.split('?')[0];
           this.routerParams = null;
           activatedRoute.queryParams.subscribe(params => {
             this.routerParams = params;
@@ -54,8 +58,13 @@ export class BreadcrumbComponent implements OnInit {
         this.breadCrumbs = [...data['breadCrumb']];
       }
       this.addItemToTabs({ tabName: this.tabName, url: this.url, routerParams: this.routerParams, routerLink: this.routerLink });
-
+      this.store.dispatch(updateReload({ isReload: false }))
     });
+    let pageReloaded = window.performance
+      .getEntriesByType('navigation')
+      .map((nav) => (nav as any).type)
+      .includes('reload');
+    this.store.dispatch(updateReload({ isReload: pageReloaded }))
   }
 
   breadCrumbs: any[] = [];
