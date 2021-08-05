@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from "@ngrx/store";
 import { environment } from '../../../environments/environment.local';
-import { addItem, removeItem, clearItems, switchItems } from "./tabs.actions";
+import { addItem, removeItem, clearItems, switchItems, updateTabName } from "./tabs.actions";
 import { Tab } from "src/app/tabs";
 
 var initalTabs: Tab[] = [];
@@ -32,6 +32,12 @@ const _tabsReducer = createReducer(
     }),
     on(switchItems, (state, { items }) => {
         return items;
+    }),
+    on(updateTabName, (state, { currentName, newName }) => {
+        let tabs: Tab[] = [...state];
+        let index: number = tabs.findIndex(t => t.tabName === currentName);
+        tabs[index] = { ...state[index], tabName: newName };
+        return tabs;
     })
 );
 

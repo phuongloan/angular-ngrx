@@ -11,6 +11,9 @@ export class SupplierService {
     getItems() {
         return this.items;
     }
+    getSupplierDetail(code: string | null) {
+        return this.items.find(supplier => supplier.code === code)
+    }
 
 }
 export interface Supplier {
@@ -31,37 +34,38 @@ export const SupplierList = [
     },
     {
         code: 'CSP000423',
-        name: 'Imperial Hotel',
+        name: 'Asan-si Korean Hotel',
         type: 'Hotel',
-        country: 'Viet Nam',
+        country: 'Korean',
         status: 'Active',
     },
     {
         code: 'CSP000424',
-        name: 'Imperial Hotel',
+        name: 'The Busan Hotel',
         type: 'Hotel',
-        country: 'Viet Nam',
+        country: 'Korean',
         status: 'Active',
     },
     {
         code: 'CSP000425',
-        name: 'Imperial Hotel',
+        name: 'The Tahara Hotel',
         type: 'Hotel',
-        country: 'Viet Nam',
+        country: 'Japan',
         status: 'Active',
     },
     {
         code: 'CSP000426',
-        name: 'Imperial Hotel',
+        name: 'Chitose Cabin',
         type: 'Hotel',
-        country: 'Viet Nam',
+        country: 'Japan',
         status: 'Active',
     }
     , {
         code: 'CSP000427',
-        name: 'Imperial Hotel',
+        name: 'Mori Hotel',
         type: 'Hotel',
-        country: 'Viet Nam',
+        country: 'Japan',
         status: 'Active',
     }
 ]
+

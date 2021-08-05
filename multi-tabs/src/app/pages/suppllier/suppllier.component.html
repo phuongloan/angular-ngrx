@@ -12,7 +12,7 @@
     <ng-container matColumnDef="code">
         <th mat-header-cell *matHeaderCellDef> Code. </th>
         <td mat-cell *matCellDef="let element">
-            <a [routerLink]="['/supplier/detail', element.code]">{{element.code}}</a>
+            <a [routerLink]="['/supplier/detail', element.code]" [state]="{ title: element.name }">{{element.code}}</a>
         </td>
     </ng-container>
     <!-- Name Column -->

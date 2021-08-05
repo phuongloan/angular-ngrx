@@ -5,3 +5,4 @@ export const addItem = createAction('[Tabs Component] AddItem', props<{ item: Ta
 export const removeItem = createAction('[Tabs Component] RemoveItem', props<{ item: Tab }>());
 export const clearItems = createAction('[Tabs Component] ClearItems');
 export const switchItems = createAction('[Tabs Component] SwitchItems', props<{ items: Tab[] }>());
+export const updateTabName = createAction('[Tabs Component] UpdateTabName', props<{ currentName: string, newName: string }>());

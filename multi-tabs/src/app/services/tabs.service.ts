@@ -30,7 +30,4 @@ export class TabsService {
         this.items = [];
         return this.items;
     }
-
-
-
 }

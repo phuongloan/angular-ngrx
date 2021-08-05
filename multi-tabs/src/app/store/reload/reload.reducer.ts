@@ -6,7 +6,6 @@ var initalState: boolean = false;
 const _reloadReducer = createReducer(
     initalState,
     on(updateReload, (state, { isReload }) => {
-        console.log('updateReload', isReload)
         return isReload;
     })
 );

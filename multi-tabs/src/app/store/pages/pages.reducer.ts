@@ -16,7 +16,6 @@ const _pagesReducer = createReducer(
         if (index > -1) {
             pages.splice(index, 1);
         }
-        console.log(page.count)
         pages.push(page);
         return pages;
     })

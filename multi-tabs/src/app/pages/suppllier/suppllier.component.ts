@@ -5,7 +5,7 @@ import { getIsReload } from '../../store/reload/reload.selector';
 import { addPage, updatePageData } from 'src/app/store/pages/pages.actions';
 import { SupplierService } from 'src/app/services/supplier.service';
 import { Subject } from "rxjs"
-import { updateReload } from '../../store/reload/reload.actions'
+
 @Component({
   selector: 'app-suppllier',
   templateUrl: './suppllier.component.html',
