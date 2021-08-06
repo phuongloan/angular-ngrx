@@ -2,15 +2,15 @@
 <!-- <a [routerLink]="['/supplier/detail', 1]" [queryParams]="{debug: true, istrue: false}">Supplier detail param</a>
 <a [routerLink]="['/supplier/detail', 1]">Supplier detail</a> -->
 <form class="supplier-form">
-    <!-- <mat-form-field class="example-full-width" appearance="fill">
+    <mat-form-field class="example-full-width" appearance="fill">
         <mat-label>Input Counter Number</mat-label>
-       
-        <input matInput [(ngModel)]="data.count">
-    </mat-form-field> -->
-    <div>{{data.count}}</div>
-    <button type="button" mat-stroked-button (click)="increment()">Increment</button>
-    <button type="button" mat-stroked-button (click)="decrement()">Decrement</button>
-    <button type="button" mat-stroked-button (click)="reset()">Reset Counter</button>
+        <input matInput [(ngModel)]="data.count" (change)="update()" name="counter">
+    </mat-form-field>
+    <div>
+        <button type="button" mat-stroked-button (click)="increment()">Increment</button>
+        <button type="button" mat-stroked-button (click)="decrement()">Decrement</button>
+        <button type="button" mat-stroked-button (click)="reset()">Reset Counter</button>
+    </div>
 </form>
 <table mat-table [dataSource]="data.data.supplierList" class="mat-elevation-z8" style="width: 100%;">
     <!--- Note that these columns can be defined in any order.

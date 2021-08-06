@@ -1,1 +1,38 @@
-<p>SupplierDetailComponent works!</p>
+<h1 *ngIf="isCreate">Supplier Create</h1>
+<h1 *ngIf="!isCreate">Supplier Detail - {{pageData.name}}</h1>
+<form class="supplier-form">
+    <p>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Country</mat-label>
+            <input matInput [(ngModel)]="pageData.country" name="supplierCountry" [disabled]="!isCreate">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Supplier code</mat-label>
+            <input matInput [(ngModel)]="pageData.code" name="supplierCode" [disabled]="!isCreate">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Supplier name</mat-label>
+            <input matInput [(ngModel)]="pageData.name" (change)="update()" name="supplierName">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Supplier status</mat-label>
+            <mat-select [(value)]="pageData.status" (selectionChange)="update()" name="supplierStatus">
+                <mat-option value="Active">Active</mat-option>
+                <mat-option value="Inactive">Inactive</mat-option>
+                <mat-option value="Pending">Pending</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Input Counter Number</mat-label>
+            <input matInput [(ngModel)]="pageData.count" (change)="update()" name="counter">
+        </mat-form-field>
+    </p>
+</form>

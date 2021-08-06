@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { FormsModule } from '@angular/forms'
 
 import { reducers, metaReducers } from './store';
 // import { EffectsModule } from '@ngrx/effects';
@@ -44,6 +45,7 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     BrowserModule,
     MaterialModule,
     BrowserAnimationsModule,
+    FormsModule,
     RouterModule.forRoot([
       {
         path: 'supplier', children: [
@@ -51,6 +53,7 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
             path: 'index', component: SuppllierComponent, data: { title: 'Supplier', breadCrumb: ['Home', 'Supplier'] }
           },
           { path: 'detail/:id', component: SupplierDetailComponent, data: { title: 'Supplier Detail', breadCrumb: ['Home', 'Supplier', 'Supplier Detail'] } },
+          { path: 'create', component: SupplierDetailComponent, data: { title: 'Supplier Create', breadCrumb: ['Home', 'Supplier', 'Supplier Create'] } },
           { path: '', redirectTo: 'index', pathMatch: 'full' },
         ]
       },

@@ -5,7 +5,7 @@ import { getIsReload } from '../../store/reload/reload.selector';
 import { updatePageData } from 'src/app/store/pages/pages.actions';
 import { SupplierService } from 'src/app/services/supplier.service';
 import { Subject } from "rxjs"
-import { updatePageId } from '../../store/tabs/tabs.actions';
+import { updatePageId, updateChangedStatus } from '../../store/tabs/tabs.actions';
 
 @Component({
   selector: 'app-suppllier',
@@ -34,6 +34,8 @@ export class SuppllierComponent implements OnInit, OnDestroy {
         count: 0
       }
       this.store.dispatch(updatePageData({ page: data }))
+      this.store.dispatch(updateChangedStatus({ tabName: 'Supplier', changedStatus: false }));
+
     }
     // if (isReload$) {
     //   let data = {
@@ -57,16 +59,22 @@ export class SuppllierComponent implements OnInit, OnDestroy {
   }
   increment() {
     this.data.count++;
-    this.store.dispatch(updatePageData({ page: { ...this.data } }))
+    this.update();
   }
 
   decrement() {
     this.data.count--;
-    this.store.dispatch(updatePageData({ page: { ...this.data } }))
+    this.update();
   }
 
   reset() {
     this.data.count = 0;
     this.store.dispatch(updatePageData({ page: { ...this.data } }))
+    this.store.dispatch(updateChangedStatus({ tabName: 'Supplier', changedStatus: false }));
+
+  }
+  update() {
+    this.store.dispatch(updatePageData({ page: { ...this.data } }));
+    this.store.dispatch(updateChangedStatus({ tabName: 'Supplier', changedStatus: true }));
   }
 }

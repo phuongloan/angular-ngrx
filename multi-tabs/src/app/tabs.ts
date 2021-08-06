@@ -4,6 +4,7 @@ export interface Tab {
     pageId?: string;
     routerLink: string;
     routerParams?: any;
+    isChangedData?: boolean;
 }
 
 export const Menu = [
@@ -20,8 +21,8 @@ export const Menu = [
             },
             {
                 tabName: 'Create Supplier',
-                url: '/supplier/detail/1',
-                routerLink: '/supplier/detail/1',
+                url: '/supplier/create',
+                routerLink: '/supplier/create',
             },
         ]
     },

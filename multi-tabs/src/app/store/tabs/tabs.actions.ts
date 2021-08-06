@@ -7,3 +7,4 @@ export const clearItems = createAction('[Tabs Component] ClearItems');
 export const switchItems = createAction('[Tabs Component] SwitchItems', props<{ items: Tab[] }>());
 export const updateTabName = createAction('[Tabs Component] UpdateTabName', props<{ currentName: string, newName: string }>());
 export const updatePageId = createAction('[Tabs Component] updatePageId', props<{ tabName: string, pageId: string }>());
+export const updateChangedStatus = createAction('[Tabs Component] updateChangedStatus', props<{ tabName: string, changedStatus: boolean }>());

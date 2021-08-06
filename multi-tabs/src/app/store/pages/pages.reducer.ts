@@ -15,6 +15,7 @@ const _pagesReducer = createReducer(
         const index: number = pages.findIndex(p => p.pageId == page.pageId);
         if (index > -1) {
             pages.splice(index, 1);
+            //pages[index] = { ...page[index], page }
         }
         pages.push(page);
         return pages;
