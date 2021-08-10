@@ -24,6 +24,7 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import ActivateGuard from './store/tabs/activate-guard';
+import { HomeComponent } from './pages/home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,6 +40,7 @@ import ActivateGuard from './store/tabs/activate-guard';
     MyCounterComponent,
     SideNavComponent,
     BreadcrumbComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +48,9 @@ import ActivateGuard from './store/tabs/activate-guard';
     BrowserAnimationsModule,
     FormsModule,
     RouterModule.forRoot([
+      {
+        path: 'home', component: HomeComponent, canActivate: [ActivateGuard], data: { title: 'Home', breadCrumb: ['Home'] }
+      },
       {
         path: 'supplier', children: [
           {
@@ -81,7 +86,7 @@ import ActivateGuard from './store/tabs/activate-guard';
           { path: '', redirectTo: 'index', pathMatch: 'full' },
         ]
       },
-      { path: '', redirectTo: '/supplier/index', pathMatch: 'full' },
+      { path: '', redirectTo: '/home', pathMatch: 'full' },
 
     ]),
     StoreModule.forRoot({},),

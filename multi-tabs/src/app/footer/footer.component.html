@@ -4,7 +4,7 @@
             <a mat-tab-link [routerLink]="tab.routerLink" [queryParams]="tab.routerParams" routerLinkActive
                 [class]="tab.isChangedData ? 'data-changed' : ''" #rla="routerLinkActive"
                 [routerLinkActiveOptions]="{exact:true}" [active]="rla.isActive"> {{tab.tabName}} <mat-icon
-                    *ngIf="tabs.length > 1" class="icon-remove"
+                    *ngIf="tabs.length > 1 && !tab.isDefault" class="icon-remove"
                     (click)="remove(tab, i, rla.isActive); $event.preventDefault();">close </mat-icon>
             </a>
         </div>

@@ -1,19 +1,19 @@
 import { Action, createReducer, on } from "@ngrx/store";
-import { environment } from '../../../environments/environment.local';
 import { addItem, removeItem, clearItems, switchItems, updateTabName, updatePageId, updateChangedStatus } from "./tabs.actions";
 import { Tab } from "src/app/tabs";
 
-var initalTabs: Tab[] = [];
-const limitTabs = environment.limitTabs;
+var initalTabs: Tab[] = [{
+    tabName: 'Home',
+    url: '/home',
+    routerLink: '/home',
+    isDefault: true
+}];
 
 const _tabsReducer = createReducer(
     initalTabs,
     on(addItem, (state, { item }) => {
         let tabs: Tab[] = [...state];
         const index: number = tabs.findIndex(i => i.url === item.url);
-        // if (tabs.length >= limitTabs) {
-        //     return tabs;
-        // }
         if (index < 0) {
             tabs.push(item);
         }
@@ -28,7 +28,7 @@ const _tabsReducer = createReducer(
         return tabs;
     }),
     on(clearItems, (state) => {
-        return [];
+        return initalTabs;
     }),
     on(switchItems, (state, { items }) => {
         return items;

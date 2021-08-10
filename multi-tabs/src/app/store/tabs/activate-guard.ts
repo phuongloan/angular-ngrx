@@ -22,7 +22,6 @@ export default class ActivateGuard implements CanActivate {
         });
     }
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        console.log('canActivate')
         let isFromMenu: boolean = this.router.getCurrentNavigation()?.extras.state?.isFromMenu;
 
         if (this.isOnlyFromMenu) {

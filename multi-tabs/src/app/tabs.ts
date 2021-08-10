@@ -5,6 +5,7 @@ export interface Tab {
     routerLink: string;
     routerParams?: any;
     isChangedData?: boolean;
+    isDefault?: boolean;
 }
 
 export const Menu = [
