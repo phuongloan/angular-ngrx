@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   environmentName: 'local',
-  limitTabs: 10
+  limitTabs: 5,
+  addTabFromLeftMenuOnly: true
 };
 
 /*

@@ -4,18 +4,18 @@ import { addItem, removeItem, clearItems, switchItems, updateTabName, updatePage
 import { Tab } from "src/app/tabs";
 
 var initalTabs: Tab[] = [];
-var limitTabs = environment.limitTabs;
+const limitTabs = environment.limitTabs;
 
 const _tabsReducer = createReducer(
     initalTabs,
     on(addItem, (state, { item }) => {
         let tabs: Tab[] = [...state];
         const index: number = tabs.findIndex(i => i.url === item.url);
+        // if (tabs.length >= limitTabs) {
+        //     return tabs;
+        // }
         if (index < 0) {
             tabs.push(item);
-        }
-        if (tabs.length > limitTabs) {
-            tabs.splice(0, 1);
         }
         return tabs;
     }),

@@ -43,6 +43,6 @@ export class FooterComponent implements OnInit {
   }
   closeAll() {
     this.store.dispatch(clearItems())
-    this.router.navigate(["/"]);
+    this.router.navigate(["/"], { state: { isFromMenu: true } });
   }
 }

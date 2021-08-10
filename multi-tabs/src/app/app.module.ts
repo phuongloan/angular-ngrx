@@ -5,10 +5,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FormsModule } from '@angular/forms'
 
 import { reducers, metaReducers } from './store';
-import { tabsReducer } from './store/tabs/tabs.reducer'
-// import { EffectsModule } from '@ngrx/effects';
-// import { AppEffects } from './effects';
-import { reduceState, StoreModule } from '@ngrx/store';
+import { StoreModule } from '@ngrx/store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { SuppllierComponent } from './pages/suppllier/suppllier.component';
@@ -26,6 +23,7 @@ import { MaterialModule } from './material-module';
 import { LayoutModule } from '@angular/cdk/layout';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import ActivateGuard from './store/tabs/activate-guard';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,35 +49,35 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
       {
         path: 'supplier', children: [
           {
-            path: 'index', component: SuppllierComponent, data: { title: 'Supplier', breadCrumb: ['Home', 'Supplier'] }
+            path: 'index', component: SuppllierComponent, canActivate: [ActivateGuard], data: { title: 'Supplier', breadCrumb: ['Home', 'Supplier'] }
           },
-          { path: 'detail/:id', component: SupplierDetailComponent, data: { title: 'Supplier Detail', breadCrumb: ['Home', 'Supplier', 'Supplier Detail'] } },
-          { path: 'create', component: SupplierDetailComponent, data: { title: 'Supplier Create', breadCrumb: ['Home', 'Supplier', 'Supplier Create'] } },
+          { path: 'detail/:id', component: SupplierDetailComponent, canActivate: [ActivateGuard], data: { title: 'Supplier Detail', breadCrumb: ['Home', 'Supplier', 'Supplier Detail'] } },
+          { path: 'create', component: SupplierDetailComponent, canActivate: [ActivateGuard], data: { title: 'Supplier Create', breadCrumb: ['Home', 'Supplier', 'Supplier Create'] } },
           { path: '', redirectTo: 'index', pathMatch: 'full' },
         ]
       },
       {
         path: 'hotel', children: [
-          { path: 'index', component: HotelComponent, data: { title: 'Hotel', breadCrumb: ['Home', 'Hotel'] } },
-          { path: 'detail', component: HotelDetailComponent, data: { title: 'Hotel Detail', breadCrumb: ['Home', 'Hotel', 'Hotel Detail'] } },
+          { path: 'index', component: HotelComponent, canActivate: [ActivateGuard], data: { title: 'Hotel', breadCrumb: ['Home', 'Hotel'] } },
+          { path: 'detail', component: HotelDetailComponent, canActivate: [ActivateGuard], data: { title: 'Hotel Detail', breadCrumb: ['Home', 'Hotel', 'Hotel Detail'] } },
           { path: '', redirectTo: 'index', pathMatch: 'full' },
         ]
       },
       {
         path: 'mapping', children: [
-          { path: 'index', component: MappingComponent, data: { title: 'Mapping', breadCrumb: ['Home', 'Mapping'] } },
+          { path: 'index', component: MappingComponent, canActivate: [ActivateGuard], data: { title: 'Mapping', breadCrumb: ['Home', 'Mapping'] } },
           { path: '', redirectTo: 'index', pathMatch: 'full' },
         ]
       },
       {
         path: 'reservation', children: [
-          { path: 'index', component: ReservationComponent, data: { title: 'Reservation', breadCrumb: ['Home', 'Reservation'] } },
+          { path: 'index', component: ReservationComponent, canActivate: [ActivateGuard], data: { title: 'Reservation', breadCrumb: ['Home', 'Reservation'] } },
           { path: '', redirectTo: 'index', pathMatch: 'full' },
         ]
       },
       {
         path: 'notice', children: [
-          { path: 'index', component: NoticeComponent, data: { title: 'Notice', breadCrumb: ['Home', 'Notice'] } },
+          { path: 'index', component: NoticeComponent, canActivate: [ActivateGuard], data: { title: 'Notice', breadCrumb: ['Home', 'Notice'] } },
           { path: '', redirectTo: 'index', pathMatch: 'full' },
         ]
       },
@@ -95,7 +93,7 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
       autoPause: true, // Pauses recording actions and state changes when the extension window is not open
     }),
   ],
-  providers: [],
+  providers: [ActivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
