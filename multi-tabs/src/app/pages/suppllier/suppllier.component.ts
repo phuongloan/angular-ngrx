@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as fromRoot from '../../store/pages/pages.selector';
-import { getIsReload } from '../../store/reload/reload.selector';
 import { updatePageData } from 'src/app/store/pages/pages.actions';
 import { SupplierService } from 'src/app/services/supplier.service';
 import { Subject } from "rxjs"
@@ -21,11 +20,8 @@ export class SuppllierComponent implements OnInit, OnDestroy {
     this.store.select(fromRoot.getPageState('supplierList')).subscribe((page: any) => {
       this.data = { ...page };
     });
-    let isReload$: boolean = false;
-    this.store.select(getIsReload).subscribe((isReload: boolean) => {
-      isReload$ = isReload;
-    });
-    if (!this.data || (Object.keys(this.data).length === 0) || isReload$) {
+
+    if (!this.data || (Object.keys(this.data).length === 0)) {
       let data = {
         pageId: 'supplierList',
         data: {
@@ -34,21 +30,7 @@ export class SuppllierComponent implements OnInit, OnDestroy {
         count: 0
       }
       this.store.dispatch(updatePageData({ page: data }))
-      this.store.dispatch(updateChangedStatus({ tabName: 'Supplier', changedStatus: false }));
-
     }
-    // if (isReload$) {
-    //   let data = {
-    //     pageId: 'supplierList',
-    //     data: {
-    //       supplierList: this.supplierService.getItems()
-    //     },
-    //     count: 0
-    //   }
-    //   this.store.dispatch(updatePageData({ page: data }))
-    // }
-
-
   }
   ngOnInit(): void {
     this.store.dispatch(updatePageId({ tabName: 'Supplier', pageId: 'supplierList' }))
@@ -75,6 +57,6 @@ export class SuppllierComponent implements OnInit, OnDestroy {
   }
   update() {
     this.store.dispatch(updatePageData({ page: { ...this.data } }));
-    //this.store.dispatch(updateChangedStatus({ tabName: 'Supplier', changedStatus: true }));
+    this.store.dispatch(updateChangedStatus({ tabName: 'Supplier', changedStatus: true }));
   }
 }

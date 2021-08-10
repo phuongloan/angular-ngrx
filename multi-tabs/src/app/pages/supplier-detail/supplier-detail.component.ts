@@ -6,7 +6,6 @@ import { Title } from '@angular/platform-browser';
 import * as fromRoot from '../../store/pages/pages.selector';
 import { SupplierService } from 'src/app/services/supplier.service';
 
-import { getIsReload } from '../../store/reload/reload.selector';
 import { updatePageData } from 'src/app/store/pages/pages.actions';
 import { updateTabName, updatePageId, updateChangedStatus } from '../../store/tabs/tabs.actions';
 @Component({
@@ -29,11 +28,7 @@ export class SupplierDetailComponent implements OnInit, OnDestroy {
     this.store.select(fromRoot.getPageState(this.pageId)).subscribe((page: any) => {
       this.pageData = { ...page };
     });
-    let isReload$: boolean = false;
-    this.store.select(getIsReload).subscribe((isReload: boolean) => {
-      isReload$ = isReload;
-    });
-    if (!this.pageData || (Object.keys(this.pageData).length === 0) || isReload$) {
+    if (!this.pageData || (Object.keys(this.pageData).length === 0)) {
       let data =
       {
         ...this.supplierService.getSupplierDetail(id), pageId: this.pageId,
@@ -42,7 +37,6 @@ export class SupplierDetailComponent implements OnInit, OnDestroy {
       let pageTitle = this.isCreate ? 'Supplier Create' : 'Supplier - ' + this.pageData.name;
 
       this.store.dispatch(updatePageData({ page: data }))
-      this.store.dispatch(updateChangedStatus({ tabName: pageTitle, changedStatus: false }));
 
     }
   }

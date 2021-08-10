@@ -5,6 +5,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { FormsModule } from '@angular/forms'
 
 import { reducers, metaReducers } from './store';
+import { tabsReducer } from './store/tabs/tabs.reducer'
 // import { EffectsModule } from '@ngrx/effects';
 // import { AppEffects } from './effects';
 import { reduceState, StoreModule } from '@ngrx/store';
@@ -85,7 +86,7 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
       { path: '', redirectTo: '/supplier/index', pathMatch: 'full' },
 
     ]),
-    StoreModule.forRoot({}),
+    StoreModule.forRoot({},),
     StoreModule.forFeature('appState', reducers, { metaReducers }),
     //StoreModule.forFeature('appState', reducers),
     LayoutModule,

@@ -11,14 +11,14 @@ export interface AppState {
     count: number;
     tabs: Tab[];
     pages: any[];
-    isReload: boolean;
+    //isReload: boolean;
 }
 
 export const reducers: ActionReducerMap<AppState> = {
     count: fromCounter.counterReducer,
     tabs: fromTabs.tabsReducer,
     pages: fromPages.pagesReducer,
-    isReload: fromReload.reloadReducer
+    //isReload: fromReload.reloadReducer
 };
 
 export const metaReducers: MetaReducer[] = [

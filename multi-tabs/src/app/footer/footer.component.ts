@@ -7,6 +7,8 @@ import * as fromRoot from '../store/tabs/tabs.selector';
 import { removeItem, switchItems, clearItems } from '../store/tabs/tabs.actions';
 import { removePageData } from '../store/pages/pages.actions';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { updateChangedStatus } from '../store/tabs/tabs.actions';
+
 
 @Component({
   selector: 'app-footer',
@@ -22,6 +24,9 @@ export class FooterComponent implements OnInit {
     this.store.select(fromRoot.getTabstate).subscribe((tabs: Tab[]) => {
       this.tabs = [...tabs];
     });
+    this.tabs.forEach((tab) => {
+      this.store.dispatch(updateChangedStatus({ tabName: tab.tabName, changedStatus: false }));
+    })
   }
   remove(item: Tab, index: number, isActive: boolean) {
     if (isActive) {

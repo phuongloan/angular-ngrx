@@ -7,20 +7,24 @@ export const hydrationMetaReducer = (
     return (state, action) => {
         if (action.type === INIT || action.type === UPDATE) {
             const storageValue = localStorage.getItem("state");
-            let pageReloaded = window.performance
-                .getEntriesByType('navigation')
-                .map((nav) => (nav as any).type)
-                .includes('reload');
-            if (storageValue && pageReloaded) {
+            if (storageValue) {
                 try {
-                    return JSON.parse(storageValue);
+                    let tabs = JSON.parse(storageValue)
+                    let next: AppState = {
+                        tabs: tabs,
+                        count: 0,
+                        pages: []
+                    }
+                    return next;
                 } catch {
                     localStorage.removeItem("state");
                 }
             }
         }
         const nextState = reducer(state, action);
-        localStorage.setItem("state", JSON.stringify(nextState));
+        if (action.type.indexOf('[Tabs Component]') !== -1) {
+            localStorage.setItem("state", JSON.stringify(nextState.tabs));
+        }
         return nextState;
     };
 };

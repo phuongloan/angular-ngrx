@@ -5,7 +5,6 @@ import { filter, map } from 'rxjs/operators';
 import { Store } from '@ngrx/store';
 import { Tab } from '../tabs';
 import { addItem } from '../store/tabs/tabs.actions';
-import { updateReload } from '../store/reload/reload.actions';
 import { Observable } from 'rxjs';
 @Component({
   selector: 'app-breadcrumb',
@@ -58,13 +57,7 @@ export class BreadcrumbComponent implements OnInit {
         this.breadCrumbs = [...data['breadCrumb']];
       }
       this.addItemToTabs({ tabName: this.tabName, url: this.url, routerParams: this.routerParams, routerLink: this.routerLink });
-      this.store.dispatch(updateReload({ isReload: false }))
     });
-    let pageReloaded = window.performance
-      .getEntriesByType('navigation')
-      .map((nav) => (nav as any).type)
-      .includes('reload');
-    this.store.dispatch(updateReload({ isReload: pageReloaded }))
   }
 
   breadCrumbs: any[] = [];

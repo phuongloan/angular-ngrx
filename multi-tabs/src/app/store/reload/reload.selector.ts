@@ -1,11 +1,11 @@
-import { createSelector, createFeatureSelector } from "@ngrx/store";
-import { AppState } from "..";
+// import { createSelector, createFeatureSelector } from "@ngrx/store";
+// import { AppState } from "..";
 
-export const getAppState = createFeatureSelector<AppState>('appState');
+// export const getAppState = createFeatureSelector<AppState>('appState');
 
-export const getIsReload = createSelector(
-    getAppState,
-    (state: AppState) => {
-        return state.isReload
-    }
-);
+// export const getIsReload = createSelector(
+//     getAppState,
+//     (state: AppState) => {
+//         return state.isReload
+//     }
+// );
