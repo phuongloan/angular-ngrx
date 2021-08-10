@@ -9,9 +9,11 @@
     justify-content: space-between;
     align-items: center;
     padding-right: 20px;
+    border-top: 1px solid rgba(0, 0, 0, 0.12);
+
     .mat-tab-nav-bar{
-        border-top: 1px solid rgba(0, 0, 0, 0.12);
         border-bottom: 0;
+        flex: 1;
         ::ng-deep{
             .mat-tab-list{
                 .mat-tab-links{
@@ -47,6 +49,5 @@
                 }
             }
         }
-        
     }
 }

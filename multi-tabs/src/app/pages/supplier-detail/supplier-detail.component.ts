@@ -18,30 +18,33 @@ export class SupplierDetailComponent implements OnInit, OnDestroy {
   isCreate: boolean = true;
   pageId: string = 'supplierCreate';
   pageTitle: string = 'Supplier Create';
+  supplierId: string | null = '';
   constructor(private store: Store, private titleService: Title, private supplierService: SupplierService, private route: ActivatedRoute) {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.isCreate = false;
-      this.pageId = 'supplier' + id;
-    }
-
-    this.store.select(fromRoot.getPageState(this.pageId)).subscribe((page: any) => {
-      this.pageData = { ...page };
-    });
-    if (!this.pageData || (Object.keys(this.pageData).length === 0)) {
-      let data =
-      {
-        ...this.supplierService.getSupplierDetail(id), pageId: this.pageId,
-        count: 0
+    this.route.paramMap.subscribe(params => {
+      this.supplierId = params.get('id');
+      // Do more processing here if needed
+      if (this.supplierId) {
+        this.isCreate = false;
+        this.pageId = 'supplier' + this.supplierId;
       }
-      let pageTitle = this.isCreate ? 'Supplier Create' : 'Supplier - ' + this.pageData.name;
+      this.store.select(fromRoot.getPageState(this.pageId)).subscribe((page: any) => {
+        this.pageData = { ...page };
+      });
+      if (!this.pageData || (Object.keys(this.pageData).length === 0)) {
+        let data =
+        {
+          ...this.supplierService.getSupplierDetail(this.supplierId), pageId: this.pageId,
+          count: 0
+        }
 
-      this.store.dispatch(updatePageData({ page: data }))
+        this.store.dispatch(updatePageData({ page: data }))
+      }
+      this.pageTitle = this.isCreate ? 'Supplier Create' : 'Supplier - ' + this.pageData.name;
 
-    }
+    });
+
   }
   ngOnInit(): void {
-    this.pageTitle = this.isCreate ? 'Supplier Create' : 'Supplier - ' + this.pageData.name;
     let currentName = this.titleService.getTitle().replace('OMC Admin - ', '');
     this.titleService.setTitle('OMC Admin - ' + this.pageTitle);
     this.store.dispatch(updateTabName({ currentName, newName: this.pageTitle }));
