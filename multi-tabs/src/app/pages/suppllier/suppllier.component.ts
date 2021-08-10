@@ -75,6 +75,6 @@ export class SuppllierComponent implements OnInit, OnDestroy {
   }
   update() {
     this.store.dispatch(updatePageData({ page: { ...this.data } }));
-    this.store.dispatch(updateChangedStatus({ tabName: 'Supplier', changedStatus: true }));
+    //this.store.dispatch(updateChangedStatus({ tabName: 'Supplier', changedStatus: true }));
   }
 }

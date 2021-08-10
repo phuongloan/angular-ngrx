@@ -4,7 +4,7 @@ import { Store, select } from '@ngrx/store';
 import { Tab } from '../tabs';
 import { Observable } from 'rxjs';
 import * as fromRoot from '../store/tabs/tabs.selector';
-import { removeItem, switchItems } from '../store/tabs/tabs.actions';
+import { removeItem, switchItems, clearItems } from '../store/tabs/tabs.actions';
 import { removePageData } from '../store/pages/pages.actions';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
@@ -35,5 +35,9 @@ export class FooterComponent implements OnInit {
   drop(event: CdkDragDrop<string[]>) {
     moveItemInArray(this.tabs, event.previousIndex, event.currentIndex);
     this.store.dispatch(switchItems({ items: this.tabs }))
+  }
+  closeAll() {
+    this.store.dispatch(clearItems())
+    this.router.navigate(["/"]);
   }
 }

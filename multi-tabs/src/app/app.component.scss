@@ -27,7 +27,7 @@ mat-sidenav.mat-drawer-opened {
 }
 .mat-drawer-content{
   .page-content{
-  padding: 20px;
-
+    padding: 20px;
+    min-height: calc(100vh - 132px);
   }
 }

@@ -1,8 +1,14 @@
 .footer{
-    position: absolute;
+    position: sticky;
     bottom: 0;
     left: 0;
     right: 0;
+    z-index: 1;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 20px;
     .mat-tab-nav-bar{
         border-top: 1px solid rgba(0, 0, 0, 0.12);
         border-bottom: 0;
