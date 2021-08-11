@@ -1,3 +1,5 @@
+import { Component } from '@angular/core';
+
 import { CanActivate } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment.local';
@@ -5,7 +7,8 @@ import * as fromRoot from './tabs.selector';
 import { Store, select } from '@ngrx/store';
 import { Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { addItem } from './tabs.actions';
-
+import { MatDialog } from '@angular/material/dialog';
+import { LimitTabMessage } from 'src/app/components/dialog/limit-tab-message/limit-tab-message';
 
 @Injectable()
 export default class ActivateGuard implements CanActivate {
@@ -16,7 +19,7 @@ export default class ActivateGuard implements CanActivate {
     routerLink: string = '';
     limitTab: number = environment.limitTabs;
     isOnlyFromMenu: boolean = environment.addTabFromLeftMenuOnly;
-    constructor(private store: Store, private router: Router) {
+    constructor(private store: Store, private router: Router, public dialog: MatDialog) {
         this.store.select(fromRoot.getLengthOfTabs).subscribe((length: number) => {
             this.tabsLength = length;
         });
@@ -35,7 +38,8 @@ export default class ActivateGuard implements CanActivate {
 
         if (!isInList) {
             if (this.tabsLength >= this.limitTab) {
-                alert('Activation blocked');
+                //alert('Activation blocked');
+                this.dialog.open(LimitTabMessage);
                 return false;
             } else {
                 this.tabName = route.data.title;
@@ -45,10 +49,5 @@ export default class ActivateGuard implements CanActivate {
             }
         }
         return true;
-    }
-    setCanActivate(length: number) {
-        this.store.select(fromRoot.getLengthOfTabs).subscribe((length: number) => {
-            this.tabsLength = length;
-        });
     }
 }

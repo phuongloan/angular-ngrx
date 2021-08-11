@@ -24,7 +24,10 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import ActivateGuard from './store/tabs/activate-guard';
+//import { LimitTabMessage } from './store/tabs/activate-guard';
+
 import { HomeComponent } from './pages/home/home.component';
+import { LimitTabMessage } from './components/dialog/limit-tab-message/limit-tab-message';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,6 +44,7 @@ import { HomeComponent } from './pages/home/home.component';
     SideNavComponent,
     BreadcrumbComponent,
     HomeComponent,
+    LimitTabMessage
   ],
   imports: [
     BrowserModule,
